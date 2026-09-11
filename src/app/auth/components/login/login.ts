@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../services/auth-service';
 import { LoginDto } from '../../models/login-dto';
 import { Router } from '@angular/router';
-import { Token } from '@angular/compiler';
 
 @Component({
   imports: [ReactiveFormsModule],
@@ -14,6 +13,8 @@ import { Token } from '@angular/compiler';
 export class Login {
 
   isPasswordHidden = true; 
+  errorLogin:boolean = false ;
+  msg:string =''
 
   constructor( private _authService:AuthService , private router:Router) {}
 
@@ -45,8 +46,10 @@ export class Login {
       this._authService.login(response , this.rememberMe.value); 
       this.router.navigate(['/project']);
       },
-      error: (error) => {
-        console.error('Login failed:', error);
+
+      error: (error:any) => {
+          this.errorLogin = true;
+          this.msg = error.error.msg;
       }
     }); 
   }

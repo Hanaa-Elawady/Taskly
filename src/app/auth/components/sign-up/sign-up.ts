@@ -47,7 +47,6 @@ export class SignUp implements OnInit {
     const password = control.get('password')?.value;
     const confirmPassword = control.get('confirmPassword')?.value;
 
-    // Set errors on the confirmPassword child control itself so it shows up invalid visually
     const confirmControl = control.get('confirmPassword');
     
     if (!password || !confirmPassword) {
@@ -58,7 +57,6 @@ export class SignUp implements OnInit {
       confirmControl?.setErrors({ passwordsMismatch: true });
       return { passwordsMismatch: true };
     } else {
-      // Clear specific cross-validation mismatch error safely if corrected
       if (confirmControl?.hasError('passwordsMismatch')) {
         confirmControl.setErrors(null);
       }
@@ -67,7 +65,6 @@ export class SignUp implements OnInit {
   }
 
   
-  // Quick live checking flags for the UI layout view
   checkRule(regex: RegExp): boolean {
     const value = this.password?.value || '';
     return regex.test(value);
