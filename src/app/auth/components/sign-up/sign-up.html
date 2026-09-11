@@ -1,0 +1,154 @@
+<header class="fixed top-0 left-0 w-full h-20 bg-white border-b border-surface-highest flex items-center px-8 z-50">
+  <div class="flex items-center gap-2 mb-8 md:mb-0">
+    <img src="assets/icons/Logo.svg" alt="Taskly Logo"  />
+  </div>
+</header>
+
+<div class="bg-background min-h-screen flex flex-col font-inter">
+  
+
+  <div class="flex-1 flex justify-center ">
+    <div class="bg-white my-24 md:p-12 rounded-sm shadow-sm max-w-xl w-full flex flex-col h-fit">
+      
+      <div class="text-center flex flex-col gap-2 pb-10">
+        <h1 class="text-headline-lg text-neutral-dark font-semibold">Create your workspace</h1>
+        <p class="text-body-md text-neutral-gray">Join the editorial approach to task management.</p>
+      </div>
+
+      <form  [formGroup]="signUpForm" (ngSubmit)="onSignUp()" class="flex flex-col gap-6 pb-4">
+        
+        <div class="flex flex-col gap-1.5">
+          <label class="text-label-sm text-form-label uppercase font-bold">Name</label>
+          <input formControlName="name"
+            type="text" 
+            placeholder="Enter your full name" 
+            class=" h-12 w-full bg-surface-medium text-neutral-dark text-title-md px-3.5 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-title-md placeholder:leading-none"          />
+          <span class="text-label-sm text-neutral-light lowercase">3-50 characters, letters only</span>
+          @if (name.touched &&  name.hasError('required')){
+            <span class="text-label-sm text-neutral-light lowercase">Name is required</span>
+          }
+          @if (name.touched &&  name.hasError('minlength')){
+            <span class="text-label-sm text-neutral-light lowercase">Min Requied Length is 3 Characters</span>
+          }
+          @if (name.touched &&  name.hasError('maxlength')){
+            <span class="text-label-sm text-neutral-light lowercase">Max Allowed Length is 50 Characters</span>
+          }
+         @if (name.touched &&  name.hasError('pattern')){
+            <span class="text-label-sm text-neutral-light lowercase">characters allowed is only letters</span>
+          }          
+
+
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-label-sm text-form-label uppercase font-bold">Email</label>
+          <input formControlName="email"
+            type="email" 
+            placeholder="yourname@company.com" 
+            class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"          />
+          @if (email.touched &&  email.hasError('required')){
+            <span class="text-label-sm text-neutral-light lowercase">Email is required</span>
+          }
+          @if (email.touched &&  email.hasError('email')){
+            <span class="text-label-sm text-neutral-light lowercase">Please enter a valid email format</span>
+          }
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label class="text-label-sm text-form-label uppercase font-bold">Job Title (Optional)</label>
+          <input formControlName="jobTitle"
+            type="text" 
+            placeholder="e.g. Project Manager" 
+            class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"          />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1.5 relative">
+            <label class="text-label-sm text-form-label uppercase font-bold">Password</label>
+              <div class="relative w-full">
+                <!-- Added 'pr-10' to prevent text from overlapping the icon -->
+                <input formControlName="password"
+                  [type]="isPasswordHidden ? 'password' : 'text'"
+                  placeholder="Password" 
+                  class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"          />
+                <!-- Added absolute positioning, centered vertically, placed at the end -->
+                <img src="assets/icons/eye.svg" 
+                  alt="toggle visibility" 
+                  class="size-4 absolute inset-y-0 right-4 my-auto cursor-pointer" 
+                  (click)="isPasswordHidden = !isPasswordHidden"
+                />
+              </div>
+
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-label-sm text-form-label uppercase font-bold">Confirm Password</label>
+            <input formControlName="confirmPassword"
+              type="password" 
+              placeholder="Repeat your password" 
+              class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"            />
+              @if (confirmPassword?.touched && confirmPassword?.hasError('passwordsMismatch')) {
+            <span class="text-label-sm text-neutral-light lowercase">Passwords do not match.</span>
+              }
+          </div>
+        </div>
+        <div class="bg-[#E8EDFF] p-4 rounded-sm flex flex-col gap-2">
+          <div class="flex items-center gap-2 text-neutral-gray">
+            <div>
+                @let hasLength = (password?.value || '').length >= 8;
+                @if (hasLength) {
+                  <svg class="size-4 text-emerald-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                } @else {
+                  <div class="size-4 rounded-full border-2 border-neutral-light flex-shrink-0"></div>
+                }
+            </div>
+            <span class="text-label-sm">At least 8 characters</span>
+          </div>
+          <div class="flex items-center gap-2 text-neutral-gray">
+            <div>
+                @let hasMix = checkRule(/[A-Z]/) && checkRule(/[a-z]/) && checkRule(/[0-9]/);
+                @if (hasMix) {
+                  <svg class="size-4 text-emerald-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                } @else {
+                  <div class="size-4 rounded-full border-2 border-neutral-light flex-shrink-0"></div>
+                }
+            </div>
+            <span class="text-label-sm">One uppercase, lowercase, and digit</span>
+          </div>
+          <div class="flex items-center gap-2 text-neutral-gray">
+            <div>
+                @let hasSpecial = checkRule(/[!@#$%^&*]/);
+                @if (hasSpecial) {
+                  <svg class="size-4 text-emerald-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                } @else {
+                  <div class="size-4 rounded-full border-2 border-neutral-light flex-shrink-0"></div>
+                }
+            </div>            
+            <span class="text-label-sm">One special character</span>
+          </div>
+        </div>
+
+        <button 
+            type="submit" 
+            [disabled]="!signUpForm.valid"
+            class="w-full bg-primary text-white font-semibold  py-3 leading-[24px] rounded-sm text-title-md transition-colors hover:bg-primary-container shadow-sm disabled:bg-neutral-light disabled:text-neutral-gray disabled:cursor-not-allowed">
+            Create Account
+        </button>
+
+      </form>
+
+      <div class="text-center text-body-md text-neutral-gray pt-8 pb-0">
+        Already have an account? 
+        <a href="/login" class="text-primary font-semibold hover:underline ml-1">Log in</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

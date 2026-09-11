@@ -1,0 +1,77 @@
+<header class="fixed top-0 left-0 w-full h-20 bg-white border-b border-surface-highest flex items-center px-8 z-50">
+  <div class="flex items-center gap-2 mb-8 md:mb-0">
+    <img src="assets/icons/Logo.svg" alt="Taskly Logo"  />
+  </div>
+</header>
+
+<div class="bg-background min-h-screen flex flex-col font-inter">
+  
+
+  <div class="flex-1 flex justify-center items-center">
+    <div class="bg-white md:p-12 rounded-sm shadow-sm max-w-[480px] w-full flex flex-col h-full gap-4">
+
+      <div class="text-center flex flex-col gap-2 pb-10">
+        <h1 class="text-headline-lg text-neutral-dark font-semibold">Welcome Back</h1>
+        <p class="text-body-md text-neutral-gray">Please enter your details to access your workspace</p>
+      </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="flex flex-col gap-6">
+      
+      <div class="flex flex-col gap-2">
+        <label class="text-label-sm text-form-label uppercase font-bold">Email</label>
+        <input formControlName="email"
+          type="email" 
+          placeholder="yourname@company.com" 
+          class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"          />
+        @if (email.touched &&  email.hasError('required')){
+          <span class="text-label-sm text-neutral-light lowercase">Email is required</span>
+        }
+        @if (email.touched &&  email.hasError('email')){
+          <span class="text-label-sm text-neutral-light lowercase">Please enter a valid email format</span>
+        }
+      </div>
+      <div class="flex flex-col gap-2 relative">
+        <label class="text-label-sm text-form-label uppercase font-bold">Password</label>
+          <div class="relative w-full">
+            <input formControlName="password"
+              [type]="isPasswordHidden ? 'password' : 'text'"
+              placeholder="Password" 
+              class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"          />
+            <img src="assets/icons/eye.svg" 
+              alt="toggle visibility" 
+              class="size-4 absolute inset-y-0 right-4 my-auto cursor-pointer" 
+              (click)="isPasswordHidden = !isPasswordHidden"
+            />
+          </div>
+          @if (password.touched &&  password.hasError('required')){
+          <span class="text-label-sm text-neutral-light lowercase">Password is required</span>
+        }
+
+      </div>
+
+      <div class="flex items-center justify-between text-label-sm py-2">
+        <label class="flex items-center gap-2 text-[#434654] cursor-pointer normal-case text-body-md font-medium">
+          <input type="checkbox" formControlName="rememberMe" class="w-4 h-4 rounded-sm border-neutral-light text-primary focus:ring-primary size-4 accent-neutral-light" />
+            Remember Me
+        </label>
+        <a href="/forgot-password" class="text-primary font-medium text-body-md hover:underline">Forgot Password?</a>
+      </div>
+
+      <button 
+        type="submit" 
+        [disabled]="loginForm.invalid" 
+        class="w-full leading-6 bg-primary text-white font-semibold py-3 leading-[24px] rounded-sm text-title-md transition-colors hover:bg-primary-container shadow-sm disabled:bg-neutral-light disabled:text-neutral-gray disabled:cursor-not-allowed">
+        Log In
+      </button>
+
+    </form>
+
+    <div class="text-center text-body-md text-form-label font-regular normal-case pt-8">
+      Don't have an account?  
+      <a href="/sign-up" class="text-primary font-semibold hover:underline ml-1">Sign Up</a>
+    </div>
+
+  </div>
+
+</div>
+</div>

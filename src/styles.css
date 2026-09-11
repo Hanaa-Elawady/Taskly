@@ -1,0 +1,38 @@
+@import url('https://googleapis.com');
+@import 'tailwindcss';
+
+
+@theme {
+    --color-primary: #003D9B;
+    --color-primary-container: #0052CC;
+    --color-surface-highest: #D7E2FF;
+    --color-surface-medium: #D7E2FF; 
+    --color-surface-low: #F1F3FF;
+    --color-background: #F9F9FF;
+    --background-image-primary-gradient: linear-gradient(95.71deg, #003D9B 0%, #0052CC 100%);
+    --color-neutral-dark: #041B3C;
+    --color-neutral-gray: #4F5F7B;
+    --color-neutral-light: #C3C6D6;
+    --color-success: #72F3B7;
+    --color-error: #BA1A1A;
+    --color-warning: #EBB100;
+    --color-placeholder: #737685;
+    --color-form-label: #4F5F7B;
+
+
+    --font-inter: 'Inter', sans-serif;
+    --text-display-lg: 3.5rem;
+    --text-display-lg--line-height: 4.25rem;
+    --text-headline-lg: 30px;
+    --text-headline-lg--line-height: 36px;
+    --text-title-md: 16px;
+    --text-title-md--line-height: 100%;
+    --text-body-md: 14px;
+    --text-body-md--line-height: 20px;
+    --text-label-sm: 11px;
+    --text-label-sm--line-height: 17px;
+    --text-label-sm--letter-spacing: 0.55px;
+}
+body {
+  font-family: var(--font-inter);
+}
