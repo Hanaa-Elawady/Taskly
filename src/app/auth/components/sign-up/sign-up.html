@@ -140,7 +140,10 @@
             class="w-full bg-primary text-white font-semibold  py-3 leading-[24px] rounded-sm text-title-md transition-colors hover:bg-primary-container shadow-sm disabled:bg-neutral-light disabled:text-neutral-gray disabled:cursor-not-allowed">
             Create Account
         </button>
-
+        
+          @if (errorSignUp){
+            <span class="text-label-sm text-center">Cannot Register : {{msg}}</span>
+          }
       </form>
 
       <div class="text-center text-body-md text-neutral-gray pt-8 pb-0">

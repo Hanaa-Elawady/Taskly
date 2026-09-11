@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 import { environment } from '../../../../enviroment';
 import { Router } from '@angular/router';
 
@@ -23,14 +23,11 @@ export class AuthService {
 
         return this.http.post(this.url + action, resource, { headers: headers})
             .pipe(
-                catchError(this.handleError)
+                catchError((error: HttpErrorResponse) => {
+                return throwError(() => error);})
             );
     }
-  
-    private handleError(error: any) {
-        console.error('An error occurred:', error);
-        return throwError(() => new Error(error.message || 'Server Error'));
-    }
+
 
     login(response:any ,rememberMe:boolean){
         localStorage.setItem('access_token', response.access_token);
@@ -41,9 +38,7 @@ export class AuthService {
           expiryDate.setMonth(expiryDate.getMonth() + 1);
           localStorage.setItem('session_expiry', expiryDate.toISOString());
         }else{
-          const expiryDate = new Date();
-          expiryDate.setDate(expiryDate.getDate() + 1);
-          localStorage.setItem('session_expiry', expiryDate.toISOString()); 
+          localStorage.setItem('session_expiry', response.expires_at); 
         }
         this.router.navigate(['/project']);
 

@@ -12,8 +12,9 @@ import { AuthService } from '../../services/auth-service';
 })
 export class SignUp implements OnInit {
 
-    isPasswordHidden = true; 
-
+  isPasswordHidden:boolean = true; 
+  errorSignUp:boolean = false ;
+  msg:string =''
 
   constructor(
     private router: Router,
@@ -103,12 +104,12 @@ onSignUp(){
     }
   }
   this.authService.postPerAction('/auth/v1/signup',dto).subscribe({
-    next: (response) => {
-      console.log('Sign-up successful:', response);
-      this.router.navigate(['/login']);
+    next: (response:any) => {
+        this.router.navigate(['/login']); 
     },
-    error: (error) => {
-      console.error('Sign-up failed:', error);
+    error: (error:any) => {
+        this.errorSignUp = true;
+        this.msg = error.error.msg;
     }
   });
 }
