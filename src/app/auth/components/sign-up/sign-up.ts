@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { AbstractControl, FormControl, FormGroup,ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { SignUpDto } from '../../models/sign-up-dto';
 import { AuthService } from '../../services/auth-service';
+import { AlertToast } from '../../../shared/alert-toast/alert-toast';
 
 @Component({
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,AlertToast],
   selector: 'app-sign-up',
   styleUrl: './sign-up.css',
   templateUrl: './sign-up.html',

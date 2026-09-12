@@ -142,7 +142,12 @@
         </button>
         
           @if (errorSignUp){
-            <span class="text-label-sm text-center">Cannot Register : {{msg}}</span>
+              <div class="fixed top-20 right-0 z-50 flex flex-col gap-3">
+                <app-alert-toast 
+                  type="error" 
+                  message={{msg}}>
+                </app-alert-toast>
+            </div>   
           }
       </form>
 

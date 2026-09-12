@@ -63,9 +63,7 @@
         class="w-full leading-6 bg-primary text-white font-semibold py-3 leading-[24px] rounded-sm text-title-md transition-colors hover:bg-primary-container shadow-sm disabled:bg-neutral-light disabled:text-neutral-gray disabled:cursor-not-allowed">
         Log In
       </button>
-      @if (errorLogin){
-        <span class="text-label-sm text-center">Cannot Login : {{msg}}</span>
-      }
+
 
     </form>
 
@@ -78,3 +76,12 @@
 
 </div>
 </div>
+
+@if (errorLogin){
+  <div class="fixed top-20 right-0 z-50 flex flex-col gap-3">
+      <app-alert-toast 
+        type="error" 
+        message={{msg}}>
+      </app-alert-toast>
+  </div>      
+}

@@ -1,0 +1,38 @@
+ @if (isVisible) {
+      <div #toastContainer 
+           class="flex items-center gap-4 w-96 p-4 rounded shadow-md border-l-4 font-sans text-white transition-all duration-500 ease-out translate-y-0 opacity-100"
+           [ngClass]="getStyles()">
+        
+        <!-- Left Side Icon -->
+        <div class="flex-shrink-0 text-2xl w-8 h-8 flex items-center justify-center">
+          @switch (type) {
+            @case ('success') {                 
+              <div class="flex items-center gap-2 mb-8 md:mb-0">
+                  <img class="w-6 h-6" src="assets/icons/success.ico" alt="error"  />
+              </div>  }
+            @case ('error') {  
+              <div class="flex items-center gap-2 mb-8 md:mb-0">
+                  <img class="w-6 h-6" src="assets/icons/error.svg" alt="error"  />
+              </div> 
+            }
+            @case ('info') { 
+              <div class="flex items-center gap-2 mb-8 md:mb-0">
+                  <img class="w-6 h-6" src="/assets/icons/info.svg.webp" alt="info"  />
+              </div> 
+             }
+          }
+        </div>
+
+        <!-- Text Content Area -->
+        <div class="flex-grow">
+          <p class="text-sm opacity-90 m-0 mt-1 leading-snug">
+            {{ message }}
+          </p>
+        </div>
+
+        <!-- Right Side Dismiss Button -->
+        <button (click)="dismiss()" class="text-white opacity-60 hover:opacity-100 text-xl font-bold cursor-pointer p-1">
+          ×
+        </button>
+      </div>
+    }

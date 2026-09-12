@@ -3,9 +3,10 @@ import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angula
 import { AuthService } from '../../services/auth-service';
 import { LoginDto } from '../../models/login-dto';
 import { Router } from '@angular/router';
+import { AlertToast } from '../../../shared/alert-toast/alert-toast';
 
 @Component({
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule ,AlertToast],
   selector: 'app-login',
   styleUrl: './login.css',
   templateUrl: './login.html',
