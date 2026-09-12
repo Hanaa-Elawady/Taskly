@@ -20,7 +20,7 @@ export class Login {
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(64)]),
+    password: new FormControl('', [Validators.required, Validators.pattern(/^(?!\s+$).+/)]),
     rememberMe: new FormControl(false),
   });
 

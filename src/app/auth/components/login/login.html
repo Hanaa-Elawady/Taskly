@@ -43,7 +43,7 @@
               (click)="isPasswordHidden = !isPasswordHidden"
             />
           </div>
-          @if (password.touched && password.hasError('required') ){
+          @if (password.touched && (password.hasError('required')|| password.hasError('pattern') ) ){
           <span class="text-body-md lowercase text-red-800">Password is required</span>
         }
 
