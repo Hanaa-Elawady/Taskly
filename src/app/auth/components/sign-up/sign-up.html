@@ -25,16 +25,16 @@
             class=" h-12 w-full bg-surface-medium text-neutral-dark text-title-md px-3.5 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-title-md placeholder:leading-none"          />
           <span class="text-label-sm text-neutral-light lowercase">3-50 characters, letters only</span>
           @if (name.touched &&  name.hasError('required')){
-            <span class="text-label-sm text-neutral-light lowercase">Name is required</span>
+            <span class="text-body-md lowercase text-red-800">Name is required</span>
           }
           @if (name.touched &&  name.hasError('minlength')){
-            <span class="text-label-sm text-neutral-light lowercase">Min Requied Length is 3 Characters</span>
+            <span class="text-body-md lowercase text-red-800">Min Requied Length is 3 Characters</span>
           }
           @if (name.touched &&  name.hasError('maxlength')){
-            <span class="text-label-sm text-neutral-light lowercase">Max Allowed Length is 50 Characters</span>
+            <span class="text-body-md lowercase text-red-800">Max Allowed Length is 50 Characters</span>
           }
          @if (name.touched &&  name.hasError('pattern')){
-            <span class="text-label-sm text-neutral-light lowercase">characters allowed is only letters</span>
+            <span class="text-body-md lowercase text-red-800">Characters allowed is only letters</span>
           }          
 
 
@@ -47,10 +47,10 @@
             placeholder="yourname@company.com" 
             class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"          />
           @if (email.touched &&  email.hasError('required')){
-            <span class="text-label-sm text-neutral-light lowercase">Email is required</span>
+            <span class="text-body-md lowercase text-red-800">Email is required</span>
           }
           @if (email.touched &&  email.hasError('email')){
-            <span class="text-label-sm text-neutral-light lowercase">Please enter a valid email format</span>
+            <span class="text-body-md lowercase text-red-800">Please enter a valid email format</span>
           }
         </div>
 
@@ -88,7 +88,7 @@
               placeholder="Repeat your password" 
               class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"            />
               @if (confirmPassword?.touched && confirmPassword?.hasError('passwordsMismatch')) {
-            <span class="text-label-sm text-neutral-light lowercase">Passwords do not match.</span>
+            <span class="text-body-md lowercase text-red-800">Passwords do not match.</span>
               }
           </div>
         </div>

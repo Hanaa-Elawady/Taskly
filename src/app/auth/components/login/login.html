@@ -24,11 +24,11 @@
           placeholder="yourname@company.com" 
           class="h-12 w-full bg-surface-medium text-neutral-dark text-body-md px-4 py-3 rounded-sm border border-transparent focus:outline-none focus:border-primary-container transition-colors text-placeholder placeholder:font-normal placeholder:text-base placeholder:leading-none"          />
         @if (email.touched &&  email.hasError('required')){
-          <span class="text-label-sm text-neutral-light lowercase">Email is required</span>
+          <span class="text-body-md lowercase text-red-800">Email is required</span>
         }
         @if (email.touched &&  email.hasError('email')){
-          <span class="text-label-sm text-neutral-light lowercase">Please enter a valid email format</span>
-        }
+          <span class="text-body-md lowercase text-red-800">Please enter a valid email format</span>
+        } 
       </div>
       <div class="flex flex-col gap-2 relative">
         <label class="text-label-sm text-form-label uppercase font-bold">Password</label>
@@ -43,8 +43,8 @@
               (click)="isPasswordHidden = !isPasswordHidden"
             />
           </div>
-          @if (password.touched &&  password.hasError('required')){
-          <span class="text-label-sm text-neutral-light lowercase">Password is required</span>
+          @if (password.touched && password.hasError('required') ){
+          <span class="text-body-md lowercase text-red-800">Password is required</span>
         }
 
       </div>
