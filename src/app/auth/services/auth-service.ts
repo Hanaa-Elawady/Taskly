@@ -30,16 +30,17 @@ export class AuthService {
 
 
     login(response:any ,rememberMe:boolean){
-        localStorage.setItem('access_token', response.access_token);
-        localStorage.setItem('refresh_token', response.refresh_token); 
-        localStorage.setItem('user-name', response.user.user_metadata.name);
         if(rememberMe){
+          localStorage.setItem('access_token', response.access_token);
+          localStorage.setItem('refresh_token', response.refresh_token); 
           const expiryDate = new Date();
           expiryDate.setMonth(expiryDate.getMonth() + 1);
           localStorage.setItem('session_expiry', expiryDate.toISOString());
         }else{
-          localStorage.setItem('session_expiry', response.expires_at); 
+          sessionStorage.setItem('access_token', response.access_token);
+          sessionStorage.setItem('refresh_token', response.refresh_token); 
         }
+
         this.router.navigate(['/project']);
 
     }
@@ -55,6 +56,11 @@ export class AuthService {
 
     
     isLogedin(): boolean {
+      const sessionToken = sessionStorage.getItem('access_token');
+      if (sessionToken) {
+        return true;
+      }
+
       const token = localStorage.getItem('access_token');
       if (!token) {
         return false;
@@ -66,10 +72,6 @@ export class AuthService {
       }
 
       const expirationDate = new Date(expirationDatestring);
-
-      if (isNaN(expirationDate.getTime())) {
-        return false;
-      }
       return new Date() < expirationDate;
     }
 

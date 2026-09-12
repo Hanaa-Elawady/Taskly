@@ -44,7 +44,6 @@ export class Login {
     this._authService.postPerAction(`/auth/v1/token?grant_type=password`,dto).subscribe({
       next: (response:any) => {
       this._authService.login(response , this.rememberMe.value); 
-      this.router.navigate(['/project']);
       },
 
       error: (error:any) => {
