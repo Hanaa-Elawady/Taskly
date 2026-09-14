@@ -21,11 +21,24 @@ export class AuthService extends DataService {
     }
 
     logout() {
-      localStorage.removeItem("refresh_token");
-      localStorage.removeItem("access_token");    
-      localStorage.removeItem('user-name');
-      localStorage.removeItem('session_expiry');  
-      this.router.navigate(['/login']);
+      this.postPerAction('/auth/v1/logout' , {"password": "test123"}).subscribe({
+        next:(res:any)=>{
+          localStorage.removeItem("refresh_token");
+          localStorage.removeItem("access_token");    
+          localStorage.removeItem('session_expiry');  
+          sessionStorage.removeItem("refresh_token");
+          sessionStorage.removeItem("access_token");    
+          this.router.navigate(['/login']);
+        return{
+          error:false,
+        }
+      },
+      error: (error:any) => {
+        return{
+          error:true,
+          msg:'Logout failed, please try again.',
+        }
+      }})
     }
     
     isLogedin(): boolean {
