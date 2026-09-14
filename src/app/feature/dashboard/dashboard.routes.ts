@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { ProjectList } from './component/project-list/project-list';
+import { ProjectList } from './project-list/project-list';
 
-export const PROJECT_ROUTES: Routes = [
+export const Dashboard_ROUTES: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'project', component: ProjectList },
 ];

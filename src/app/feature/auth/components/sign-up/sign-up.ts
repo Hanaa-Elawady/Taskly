@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, FormControl, FormGroup,ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { SignUpDto } from '../../models/sign-up-dto';
-import { AuthService } from '../../services/auth-service';
-import { AlertToast } from '../../../shared/alert-toast/alert-toast';
+import { AlertToast } from '../../../../shared/component/alert-toast/alert-toast';
+import { SignUpDto } from '../../../../core/models/auth-models/sign-up-dto';
+import { AuthService } from '../../../../core/services/auth-service';
 
 @Component({
   imports: [ReactiveFormsModule,AlertToast],

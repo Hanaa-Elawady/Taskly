@@ -1,33 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
-import { environment } from '../../../../enviroment';
+import { inject, Service } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from './data-service';
 
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
-    private http = inject(HttpClient);
+@Service()
+export class AuthService extends DataService {
     private router = inject(Router);
-    private url = environment.apiUrl;
-    private apiKey = environment.apiKey;
-
-    postPerAction(action: string, resource: any) {
-        const headers = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'apikey': this.apiKey,
-            'Authorization': `Bearer ${this.apiKey}`
-        });
-
-        return this.http.post(this.url + action, resource, { headers: headers})
-            .pipe(
-                catchError((error: HttpErrorResponse) => {
-                return throwError(() => error);})
-            );
-    }
-
 
     login(response:any ,rememberMe:boolean){
         if(rememberMe){
@@ -40,9 +17,7 @@ export class AuthService {
           sessionStorage.setItem('access_token', response.access_token);
           sessionStorage.setItem('refresh_token', response.refresh_token); 
         }
-
         this.router.navigate(['/project']);
-
     }
 
     logout() {
@@ -51,11 +26,10 @@ export class AuthService {
       localStorage.removeItem('user-name');
       localStorage.removeItem('session_expiry');  
       this.router.navigate(['/login']);
-
     }
-
     
     isLogedin(): boolean {
+        //Add Check if token still good if not refresh
       const sessionToken = sessionStorage.getItem('access_token');
       if (sessionToken) {
         return true;
@@ -74,7 +48,6 @@ export class AuthService {
       const expirationDate = new Date(expirationDatestring);
       return new Date() < expirationDate;
     }
-
 
     refreshToken(): void {
       const refreshToken = localStorage.getItem('refresh_token');
