@@ -1,8 +1,36 @@
 <div class="flex h-screen w-full overflow-hidden">
   
-  <aside class="w-64 flex-none bg-gray-100 border-r border-gray-200">
-    <div class="p-6">
-      <p class="font-bold text-gray-700">Fixed Sidebar </p>
+  <aside class="w-64 flex h-screen bg-surface-low p-4 flex-col">
+    <div class="px-2 py-1 ">
+        <div class="flex items-center gap-2 mb-8 md:mb-0 pb-8">
+            <img src="assets/icons/Logo.svg" alt="Taskly Logo"  />
+        </div>
+    </div>
+    <div class="flex-1 overflow-y-auto gap-1 flex flex-col">
+        <div class="bg-white flex px-3 py-2.5 gap-3 item-center rounded rounded-sm">
+            <div class="flex item-center justify-center">    
+                <img class="w-5 h-4" src="assets/icons/folder.svg" alt="Projects"  />
+            </div>
+             <p class="leading-5 text-sm font-medium text-primary">Project</p>
+        </div>
+        <div class="flex px-3 py-2.5 gap-3 item-center rounded rounded-sm">
+             <img src="assets/icons/statistics.svg" alt=" My Statistics"  />
+             <p class="leading-5 text-sm font-medium text-neutral-dark"> My Statistics</p>
+        </div>
+    </div>
+    <div class="pt-6 gap-1 border-t border-[#C3C6D633]">
+        <div class="flex px-3 py-2.5 gap-3 item-center rounded rounded-sm">
+            <div class="flex item-center justify-center">    
+                <img class="w-5 h-4" src="assets/icons/collapse.svg" alt="Projects"  />
+            </div>
+             <p class="leading-5 text-sm font-medium text-neutral-dark">Collapse</p>
+        </div>
+        <div class="flex px-3 py-2.5 gap-3 item-center rounded rounded-sm">
+            <div class="flex item-center justify-center">    
+                <img class="w-5 h-4" src="assets/icons/logout.svg" alt="Projects"  />
+            </div>
+             <p class="leading-5 text-sm font-medium text-[#BA1A1A]">Logout</p>
+        </div>
     </div>
   </aside>
 
