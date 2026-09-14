@@ -16,4 +16,12 @@ export class DataService {
             return throwError(() => error);})
         );
     }
+
+    get(action: string){
+            return this.http.get(this.url + action)
+        .pipe(
+            catchError((error: HttpErrorResponse) => {
+            return throwError(() => error);})
+        );
+    }
 }
