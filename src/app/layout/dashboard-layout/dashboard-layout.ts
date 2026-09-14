@@ -2,14 +2,16 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AuthService } from '../../core/services/auth-service';
 import { UserDataDto } from '../../core/models/user-models/user-data-dto';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet ,CommonModule],
   selector: 'app-dashboard-layout',
   styleUrl: './dashboard-layout.css',
   templateUrl: './dashboard-layout.html',
 })
 export class DashboardLayout implements OnInit{
+isCollapsed :boolean= false;
 viewData:boolean=false;
 name:string="HYH";
   error:boolean=false;
